@@ -20,7 +20,7 @@ export class ProfileService{
         this.isLoggedIn.next(false);
     }
 
-    async loadComponent(vcr: ViewContainerRef, isLoggedIn: boolean ){
+    async loadComponent(vcr: ViewContainerRef, isLoggedIn ){
         const { GuestCardComponent } = await import('./guest-card/guest-card.component');
 
         const { UserCardComponent } = await import('./user-card/user-card.component');

@@ -10,5 +10,28 @@ import { Subject } from 'rxjs';
 })
 
 export class ProfileComponent implements OnInit, OnDestroy{
-    
+
+    @ViewChild(ProfileHostDirective, {static:true}) profileHost: ProfileHostDirective;
+
+    private destroySubject = new Subject();
+
+    constructor( private profileService: ProfileService){}
+
+    ngOnInit(){
+        const viewConatinerRef = this.profileHost.viewContainerRef;
+
+        this.profileService.isLoggedIn$
+            .pipe(
+                takeUntil(this.destroySubject),
+                mergeMap(isLoggedIn => 
+                this.profileService.loadComponent(viewConatinerRef, isLoggedIn)
+            )
+            ).subscribe();
+    }
+
+    ngOnDestroy(){
+        this.destroySubject.next();
+        this.destroySubject.complete();
+    }
+
 }
