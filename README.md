@@ -1,6 +1,6 @@
 # Dynamiccomponent
 
-How to create a dynamic component using Factorymethod
+How to create a dynamic component using ViewContainerRef's createComponent method and embedding component in ComponentFactoryResolver's resolveComponentFactory(component) method
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 
